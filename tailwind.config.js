@@ -1,0 +1,106 @@
+const { nextui } = require("@nextui-org/react");
+
+/** @type {import('tailwindcss').Config} */
+
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        sulu: {
+          50: '#f6fee7',
+          100: '#eafccb',
+          200: '#d6f99d',
+          300: '#baf266',
+          400: '#9de635',
+          500: '#7ecc16',
+          600: '#60a30d',
+          700: '#497c0f',
+          800: '#3c6212',
+          900: '#345314',
+          950: '#192e05',
+        },
+        mindaro: {
+          50: '#fbfee7',
+          100: '#f3fbcc',
+          200: '#e6f79f',
+          300: '#daf280',
+          400: '#bde338',
+          500: '#9ec919',
+          600: '#7ba010',
+          700: '#5d7a11',
+          800: '#4b6113',
+          900: '#3f5215',
+          950: '#202d06',
+        },
+        concrete: {
+          50: '#f8f8f8',
+          100: '#f2f2f2',
+          200: '#dcdcdc',
+          300: '#bdbdbd',
+          400: '#989898',
+          500: '#7c7c7c',
+          600: '#656565',
+          700: '#525252',
+          800: '#464646',
+          900: '#3d3d3d',
+          950: '#292929',
+        },
+        chicago: {
+          50: '#f6f6f6',
+          100: '#e7e7e7',
+          200: '#d1d1d1',
+          300: '#b0b0b0',
+          400: '#888888',
+          500: '#6d6d6d',
+          600: '#595959',
+          700: '#4f4f4f',
+          800: '#454545',
+          900: '#3d3d3d',
+          950: '#262626',
+        },
+        codGray: {
+          50: '#f6f6f6',
+          100: '#e7e7e7',
+          200: '#d1d1d1',
+          300: '#b0b0b0',
+          400: '#888888',
+          500: '#6d6d6d',
+          600: '#5d5d5d',
+          700: '#4f4f4f',
+          800: '#454545',
+          900: '#3d3d3d',
+          950: '#0d0d0d',
+        },
+
+      },
+      fontFamily: {
+        'Kanit-Black': ['Black'],
+        'Kanit-BlackItalic': ['BlackItalic'],
+        'Kanit-Bold': ['Bold'],
+        'Kanit-BoldItalic': ['BoldItalic'],
+        'Kanit-ExtraBold': ['ExtraBold'],
+        'Kanit-ExtraBoldItalic': ['ExtraBoldItalic'],
+        'Kanit-ExtraLight': ['ExtraLight'],
+        'Kanit-ExtraLightItalic': ['ExtraLightItalic'],
+        'Kanit-Italic': ['Italic'],
+        'Kanit-Light': ['Light'],
+        'Kanit-LightItalic': ['LightItalic'],
+        'Kanit-Medium': ['Medium'],
+        'Kanit-MediumItalic': ['MediumItalic'],
+        'Kanit-Regular': ['Regular'],
+        'Kanit-SemiBold': ['SemiBold'],
+        'Kanit-SemiBoldItalic': ['SemiBoldItalic'],
+        'Kanit-Thin': ['Thin'],
+        'Kanit-ThinItalic': ['ThinItalic'],
+      }
+    },
+  },
+  darkMode: "class",
+  plugins: [nextui()]
+}
+
