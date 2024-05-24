@@ -1,5 +1,5 @@
-export { default as Home } from './Home';
-export { default as Login } from './Login';
-export { default as Register } from './Register';
-export { default as Single } from './Single';
-export { default as Write } from './Write';
+export { default as Home } from './HomePages/Home';
+export { default as Login } from './LoginPages/Login';
+export { default as Register } from './LoginPages/Register';
+export { default as Single } from './BlogPages/Single';
+export { default as Write } from './BlogPages/Write';

@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 /* Import custom fonts */
-
 @font-face {
   font-family: 'Black';
   src: local('Kanit-Black'),
