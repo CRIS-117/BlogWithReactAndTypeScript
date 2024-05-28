@@ -35,11 +35,11 @@ const Header = () => {
     { navlink: "CINEMA", path: "/cinema" },
     { navlink: "DESIGN", path: "/design" },
     { navlink: "FOOD", path: "/food" },
-    { navlink: "BLOG", path: "/write" },
+    { navlink: "BLOG", path: "/post" },
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -90,7 +90,7 @@ const Header = () => {
           </NavLink>
         </NavbarItem>
         <NavbarItem>
-          <NavLink color="foreground" to="/write" className={({ isActive }) => (isActive ? 'text-base font-Kanit-Bold text-sulu-500 underline underline-offset-4 decoration-2 decoration-sulu-500 hover:text-sulu-600' : 'text-base font-Kanit-Light hover:text-sulu-500')}>
+          <NavLink color="foreground" to="/post" className={({ isActive }) => (isActive ? 'text-base font-Kanit-Bold text-sulu-500 underline underline-offset-4 decoration-2 decoration-sulu-500 hover:text-sulu-600' : 'text-base font-Kanit-Light hover:text-sulu-500')}>
             BLOG
           </NavLink>
         </NavbarItem>
@@ -118,8 +118,8 @@ const Header = () => {
               }}
               className="transition-transform"
               classNames={{
-                name: ' font-Kanit-Light text-[12px]  lg:text-base',
-                description: ' font-Kanit-Light text-[10px] lg:text-sm'
+                name:'hidden md:flex font-Kanit-Light text-[12px]  lg:text-base',
+                description:'hidden md:flex font-Kanit-Light text-[10px] lg:text-sm'
               }}
               description="@CristoferDevs"
               name="Cristofer Angeles"

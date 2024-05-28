@@ -4,7 +4,6 @@ import './App.css'
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
   Outlet
 } from "react-router-dom";
 
@@ -14,7 +13,8 @@ import {
   Register,
   Login,
   Single,
-  Write
+  Write,
+  NotFound
 } from './pages';
 
 import {
@@ -42,11 +42,11 @@ const routes = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/post/:id',
+        path: '/blog-view-post/:id',
         element: <Single />
       },
       {
-        path: '/write',
+        path: '/post',
         element: <Write />
       },
     ],
@@ -58,6 +58,10 @@ const routes = createBrowserRouter([
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '*',
+    element: <NotFound />
   },
 ])
 

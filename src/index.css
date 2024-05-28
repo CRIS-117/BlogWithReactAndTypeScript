@@ -110,3 +110,10 @@
   src: local('Kanit-ThinItalic'),
     url('../public/fonts/Kanit-ThinItalic.ttf') format('truetype');
 }
+
+.containerQuill{
+  .quillEditor{
+    height: 100%;
+    border: none;
+  }
+}
