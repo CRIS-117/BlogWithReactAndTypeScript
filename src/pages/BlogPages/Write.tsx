@@ -1,4 +1,14 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import {
+  useState,
+  useEffect,
+  useMemo,
+} from 'react';
+
+import { IFile } from '../../models';
+
+import { useInput } from '../../customHooks'
+
+import { categories } from '../../utils/data/categories';
 
 import Quill from 'quill';
 import ReactQuill from 'react-quill';
@@ -10,9 +20,8 @@ import { modules } from '../../modules/quillModules';
 Quill.register('modules/imageResize', ImageResize);
 
 import { useDropzone } from 'react-dropzone'
-import { PreviewFile } from '../../models';
-import { 
-  baseStyle, 
+import {
+  baseStyle,
   focusedStyle,
   acceptStyle,
   rejectStyle,
@@ -22,14 +31,27 @@ import {
   img
 } from '../../styles/dropzoneStyles';
 
-import {Input} from "@nextui-org/react";
+import {
+  Input,
+  Autocomplete,
+  AutocompleteItem,
+  Button
+} from "@nextui-org/react";
+
+const validate = (val: string) => {
+  console.log(val);
+  console.log(categories.some(c => c.id === Number(val)));
+  return categories.some(c => c.id === Number(val));
+};
 
 const Write = () => {
 
-  const [value, setValue] = useState('');
-  const quillRef = useRef(null);
+  const valueQuill = useInput('');
+  const valueAutocomplete = useInput('');
 
-  const [files, setFiles] = useState<PreviewFile[]>([]);
+  const [files, setFiles] = useState<IFile[]>([]);
+
+  const [touched, setTouched] = useState(false);
 
   const {
     getRootProps,
@@ -43,7 +65,7 @@ const Write = () => {
     },
     onDrop: acceptedFiles => {
       setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: URL.createObjectURL(file)
+        preview: URL.createObjectURL(file),
       })));
     }
   });
@@ -60,15 +82,18 @@ const Write = () => {
   ]);
 
   const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img
-          src={file.preview}
-          style={img}
-          // Revoke data uri after image is loaded
-          onLoad={() => { URL.revokeObjectURL(file.preview) }}
-        />
+    <div className='flex flex-col'>
+      <div style={thumb} key={file.name}>
+        <div style={thumbInner}>
+          <img
+            src={file.preview}
+            style={img}
+            // Revoke data uri after image is loaded
+            onLoad={() => { URL.revokeObjectURL(file.preview) }}
+          />
+        </div>
       </div>
+      <small className='font-Kanit-Light text-xs'>{file.name}</small>
     </div>
   ));
 
@@ -79,33 +104,102 @@ const Write = () => {
 
   return (
     <section className='bg-concrete-100'>
-      <div className='flex flex-col items-center bg-white'>
-        <div className='w-[85%]'>
+      <div className='flex flex-col items-center'>
+        <div className='w-[85%] bg-white p-10 my-10'>
+          <div className='w-full bg-mindaro-400 p-5 mb-10'>
+            <b className='font-Kanit-Bold text-2xl text-concrete-800 lg:text-5xl'>Explora. Escribe. Conquista.</b>
+            <p className='font-Kanit-Light leading-tight text-concrete-700 lg:text-2xl'>"Sumérjase en nuestro espacio donde sus palabras cobran vida. Comparte tus ideas, inspira a otros y deja tu huella en el mundo digital. Tu historia comienza aquí".</p>
+          </div>
 
-          <div>
-            <div {...getRootProps({ style })}>
-              <input {...getInputProps()}/>
-              <p>Drag 'n' drop some files here, or click to select files</p>
+          <form action="">
+            <div className='mb-10'>
+              <div {...getRootProps({ style })}>
+                <input {...getInputProps()} />
+                <p className='font-Kanit-Light'>Arrastre y suelte algunos archivos aquí o haga clic para seleccionar archivos</p>
+              </div>
+              <aside style={thumbsContainer}>
+                {thumbs}
+              </aside>
             </div>
-            <aside style={thumbsContainer}>
-              {thumbs}
-            </aside>
-          </div>
 
-          <div className='containerQuill'>
-            <ReactQuill
-              ref={quillRef}
-              className='quillEditor'
-              theme="snow"
-              value={value}
-              onChange={setValue}
-              modules={modules}
-            />
-          </div>
+            <div className='mb-10'>
+              <Input
+                isRequired
+                size='sm'
+                type="text"
+                label="Título"
+                variant='underlined'
+                placeholder="Ingresa el título"
+                errorMessage='Complete este campo.'
+                labelPlacement='outside'
+                classNames={{
+                  base: 'font-Kanit-Light',
+                  label: 'font-Kanit-Light text-base',
+                  // inputWrapper: 'border-sulu-500 hover:border-sulu-300',
+                  errorMessage: 'font-Kanit-Light'
+                }}
+              />
+            </div>
+
+            <div className='containerQuill mb-10'>
+              <ReactQuill
+                className='quillEditor'
+                theme="snow"
+                value={valueQuill.value}
+                onChange={valueQuill.handleChange}
+                modules={modules}
+              />
+            </div>
+
+            <div className='mb-10'>
+              <Autocomplete
+                variant='underlined'
+                label="Categoría de tu publicación"
+                placeholder='Selecciona una categoría'
+                className="max-w-xs"
+                size='lg'
+                labelPlacement='outside'
+                errorMessage={validate(valueAutocomplete.value) || !touched ? "" : "Tiene que ser una de las opciones ya establecidas"}
+                isInvalid={validate(valueAutocomplete.value) || !touched ? false : true}
+                defaultItems={categories}
+                selectedKey={valueAutocomplete.value}
+                onSelectionChange={valueAutocomplete.handleChange}
+                onClose={() => setTouched(true)}
+                classNames={{
+                  base: 'font-Kanit-Light',
+                  popoverContent: 'font-Kanit-Light',
+                }}
+              >
+                {categories.map((category) => (
+                  <AutocompleteItem key={category.id} value={category.value}>
+                    {category.label}
+                  </AutocompleteItem>
+                ))}
+              </Autocomplete>
+            </div>
+
+            <div className='flex gap-4'>
+              <Button
+                radius='none'
+                className='font-Kanit-Medium text-white bg-sulu-500'
+              >
+                Publicar
+              </Button>
+              <Button
+                radius='none'
+                variant='bordered'
+                className='font-Kanit-Medium text-sulu-500 border-sulu-500'
+              >
+                Cancelar
+              </Button>
+            </div>
+          </form>
+
           <div>
             <p>
             </p>
           </div>
+
         </div>
       </div>
     </section>

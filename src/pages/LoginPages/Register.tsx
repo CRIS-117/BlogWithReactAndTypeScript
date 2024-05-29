@@ -43,7 +43,7 @@ const Register = () => {
               <Input
                 isRequired
                 size='sm'
-                type="email"
+                type="text"
                 label="Username"
                 variant='underlined'
                 placeholder="Enter your username"

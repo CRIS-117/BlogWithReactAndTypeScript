@@ -29,12 +29,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
-    { navlink: "ART", path: "/art" },
-    { navlink: "SCIENCE", path: "/science" },
-    { navlink: "TECHNOLOGY", path: "/technology" },
-    { navlink: "CINEMA", path: "/cinema" },
-    { navlink: "DESIGN", path: "/design" },
-    { navlink: "FOOD", path: "/food" },
+    { navlink: "ARTE", path: "/art" },
+    { navlink: "CIENCIA", path: "/science" },
+    { navlink: "TECNOLOGÍA", path: "/technology" },
+    { navlink: "CINE", path: "/cinema" },
+    { navlink: "DISEÑO", path: "/design" },
+    { navlink: "COMIDA", path: "/food" },
     { navlink: "BLOG", path: "/post" },
   ];
 
@@ -49,7 +49,7 @@ const Header = () => {
           <NavLink to="/">
             <Image
               isBlurred
-              width={screen.width < 340 ? 10 : 40  }
+              width={screen.width < 340 ? 10 : 40}
               src={logo}
               alt="NextUI Album Cover"
               className="m-5"
@@ -61,32 +61,32 @@ const Header = () => {
       <NavbarContent className="hidden lg:flex gap-4" justify="center">
         <NavbarItem>
           <NavLink color="foreground" to="/art/?cat=art" className={({ isActive }) => (isActive ? 'text-base font-Kanit-Bold text-sulu-500 underline underline-offset-4 decoration-2 decoration-sulu-500 hover:text-sulu-600' : 'text-base font-Kanit-Light hover:text-sulu-500')}>
-            ART
+            ARTE
           </NavLink>
         </NavbarItem>
         <NavbarItem>
           <NavLink color="foreground" to="/science/?cat=science" className={({ isActive }) => (isActive ? 'text-base font-Kanit-Bold text-sulu-500 underline underline-offset-4 decoration-2 decoration-sulu-500 hover:text-sulu-600' : 'text-base font-Kanit-Light hover:text-sulu-500')}>
-            SCIENCE
+            CIENCIA
           </NavLink>
         </NavbarItem>
         <NavbarItem>
           <NavLink color="foreground" to="/technology/?cat=technology" className={({ isActive }) => (isActive ? 'text-base font-Kanit-Bold text-sulu-500 underline underline-offset-4 decoration-2 decoration-sulu-500 hover:text-sulu-600' : 'text-base font-Kanit-Light hover:text-sulu-500')}>
-            TECHNOLOGY
+            TECNOLOGÍA
           </NavLink>
         </NavbarItem>
         <NavbarItem>
           <NavLink color="foreground" to="/cinema/?cat=cinema" className={({ isActive }) => (isActive ? 'text-base font-Kanit-Bold text-sulu-500 underline underline-offset-4 decoration-2 decoration-sulu-500 hover:text-sulu-600' : 'text-base font-Kanit-Light hover:text-sulu-500')}>
-            CINEMA
+            CINE
           </NavLink>
         </NavbarItem>
         <NavbarItem>
           <NavLink color="foreground" to="/design/?cat=design" className={({ isActive }) => (isActive ? 'text-base font-Kanit-Bold text-sulu-500 underline underline-offset-4 decoration-2 decoration-sulu-500 hover:text-sulu-600' : 'text-base font-Kanit-Light hover:text-sulu-500')}>
-            DESIGN
+            DISEÑO
           </NavLink>
         </NavbarItem>
         <NavbarItem>
           <NavLink color="foreground" to="/food/?cat=food" className={({ isActive }) => (isActive ? 'text-base font-Kanit-Bold text-sulu-500 underline underline-offset-4 decoration-2 decoration-sulu-500 hover:text-sulu-600' : 'text-base font-Kanit-Light hover:text-sulu-500')}>
-            FOOD
+            COMIDA
           </NavLink>
         </NavbarItem>
         <NavbarItem>
@@ -111,15 +111,15 @@ const Header = () => {
             <User
               as="button"
               avatarProps={{
-                size:'sm',
+                size: 'sm',
                 isBordered: true,
                 color: 'success',
                 src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
               }}
               className="transition-transform"
               classNames={{
-                name:'hidden md:flex font-Kanit-Light text-[12px]  lg:text-base',
-                description:'hidden md:flex font-Kanit-Light text-[10px] lg:text-sm'
+                name: 'hidden md:flex font-Kanit-Light text-[12px]  lg:text-base',
+                description: 'hidden md:flex font-Kanit-Light text-[10px] lg:text-sm'
               }}
               description="@CristoferDevs"
               name="Cristofer Angeles"

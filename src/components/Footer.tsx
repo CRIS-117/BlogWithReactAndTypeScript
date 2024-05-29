@@ -26,12 +26,12 @@ const Footer = () => {
         <ul className='font-Kanit-Regular text-chicago-800 flex gap-3'>
           <li className='hover:text-chicago-300'>
             <Link to={'/'}>
-              Home
+              Inicio
             </Link>
           </li>
           <li className='hover:text-chicago-300'>
             <Link to={'/about'}>
-              About
+              Sobre nosotros
             </Link>
 
           </li>
@@ -42,7 +42,7 @@ const Footer = () => {
           </li>
           <li className='hover:text-chicago-300'>
             <Link to={'/contact'}>
-              Contact
+              Contacto
             </Link>
           </li>
         </ul>

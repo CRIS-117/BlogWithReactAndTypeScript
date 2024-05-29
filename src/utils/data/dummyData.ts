@@ -1,6 +1,6 @@
-import { Post } from "../../models";
+import { IPost } from "../../models";
 
-export const Posts: Post[] = [
+export const Posts: IPost[] = [
   {
     id:1, 
     title: 'Los Misterios del Universo: Explora los Últimos Descubrimientos en Astrofísica', 
