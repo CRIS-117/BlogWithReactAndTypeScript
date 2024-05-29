@@ -1,6 +1,8 @@
 import { RefObject } from 'react';
 import ReactQuill from 'react-quill';
 
+///////////////////  Use after create the back  /////////////////
+
 // Custom image handler
 export const imageHandler = (quillRef: RefObject<ReactQuill>) => {
   const input = document.createElement('input');

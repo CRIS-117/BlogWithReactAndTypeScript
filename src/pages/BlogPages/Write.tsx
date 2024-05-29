@@ -2,7 +2,7 @@ import {
   useState,
   useEffect,
   useMemo,
-  useRef,
+  // useRef, // use after create back
 } from 'react';
 
 import { modules } from '../../modules/quillModules';
@@ -49,7 +49,7 @@ const validate = (val: string) => {
 
 const Write = () => {
 
-  const quillRef = useRef<ReactQuill>(null);
+  // const quillRef = useRef<ReactQuill>(null);// use after create back
 
   const valueQuill = useInput('');
   const valueAutocomplete = useInput('');
@@ -58,7 +58,7 @@ const Write = () => {
 
   const [touched, setTouched] = useState(false);
 
-  const module = modules(quillRef);
+  // const module = modules(quillRef);// use after create back
 
   const {
     getRootProps,
@@ -151,12 +151,12 @@ const Write = () => {
 
             <div className='containerQuill mb-10'>
               <ReactQuill
-                ref={quillRef}
+                // ref={quillRef}// use after create back
                 className='quillEditor'
                 theme="snow"
                 value={valueQuill.value}
                 onChange={valueQuill.handleChange}
-                modules={module}
+                modules={modules}
               />
             </div>
 
