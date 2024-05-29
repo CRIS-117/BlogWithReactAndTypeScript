@@ -1,22 +1,31 @@
-export const modules = {
-  toolbar: [
-    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    ['blockquote'],
-    ['link', 'image'],
+import { RefObject } from 'react';
+import ReactQuill from 'react-quill';
+import { imageHandler } from "../pages/handlers/imageHandler"
 
-    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
-    [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+export const modules = (quillRef: RefObject<ReactQuill>) => ({
+  toolbar: {
+    container: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote'],
+      ['link', 'image'],
 
-    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+      [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
 
-    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-    [{ 'font': [] }],
-    [{ 'align': [] }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
-    ['clean']                                         // remove formatting button
-  ],
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+
+      ['clean']
+    ],
+    handlers: {
+      image: () => imageHandler(quillRef),
+    }
+  },
   imageResize: {
     modules: ['Resize', 'DisplaySize', 'Toolbar'],
   },
-}
+});

@@ -2,7 +2,10 @@ import {
   useState,
   useEffect,
   useMemo,
+  useRef,
 } from 'react';
+
+import { modules } from '../../modules/quillModules';
 
 import { IFile } from '../../models';
 
@@ -14,7 +17,6 @@ import Quill from 'quill';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import ImageResize from 'quill-image-resize-module-react'
-import { modules } from '../../modules/quillModules';
 
 // Register the image resizing module with Quill
 Quill.register('modules/imageResize', ImageResize);
@@ -44,7 +46,10 @@ const validate = (val: string) => {
   return categories.some(c => c.id === Number(val));
 };
 
+
 const Write = () => {
+
+  const quillRef = useRef<ReactQuill>(null);
 
   const valueQuill = useInput('');
   const valueAutocomplete = useInput('');
@@ -52,6 +57,8 @@ const Write = () => {
   const [files, setFiles] = useState<IFile[]>([]);
 
   const [touched, setTouched] = useState(false);
+
+  const module = modules(quillRef);
 
   const {
     getRootProps,
@@ -82,6 +89,7 @@ const Write = () => {
   ]);
 
   const thumbs = files.map(file => (
+
     <div className='flex flex-col'>
       <div style={thumb} key={file.name}>
         <div style={thumbInner}>
@@ -101,7 +109,7 @@ const Write = () => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
     return () => files.forEach(file => URL.revokeObjectURL(file.preview));
   }, []);
-
+  console.log(valueQuill.value)
   return (
     <section className='bg-concrete-100'>
       <div className='flex flex-col items-center'>
@@ -143,11 +151,12 @@ const Write = () => {
 
             <div className='containerQuill mb-10'>
               <ReactQuill
+                ref={quillRef}
                 className='quillEditor'
                 theme="snow"
                 value={valueQuill.value}
                 onChange={valueQuill.handleChange}
-                modules={modules}
+                modules={module}
               />
             </div>
 
@@ -196,8 +205,10 @@ const Write = () => {
           </form>
 
           <div>
-            <p>
-            </p>
+            <div dangerouslySetInnerHTML={{ __html: valueQuill.value }} />
+            <div>
+              {valueQuill.value}
+            </div>
           </div>
 
         </div>
