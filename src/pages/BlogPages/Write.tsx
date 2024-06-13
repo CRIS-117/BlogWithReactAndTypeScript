@@ -21,6 +21,10 @@ import ImageResize from 'quill-image-resize-module-react'
 // Register the image resizing module with Quill
 Quill.register('modules/imageResize', ImageResize);
 
+import DOMPurify from 'dompurify';
+
+import parse from 'html-react-parser';
+
 import { useDropzone } from 'react-dropzone'
 import {
   baseStyle,
@@ -109,7 +113,10 @@ const Write = () => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
     return () => files.forEach(file => URL.revokeObjectURL(file.preview));
   }, []);
-  console.log(valueQuill.value)
+
+  const html = '<ol><li>sdasdsa</li><li>asd</li><li>asd</li><li>asd</li><li>as</li></ol><blockquote>dsdfdsfdfsdf</blockquote><p class="ql-indent-1">quoteee</p><h1>asdasdasasdsad</h1><p><span class="ql-size-huge">asdasdasdasdas</span></p><b>dfsdf</b><h1>sfsdfsfsdf</h1>'; //valueQuill.value;
+  const htmlSanatized = DOMPurify.sanitize(html);
+
   return (
     <section className='bg-concrete-100'>
       <div className='flex flex-col items-center'>
@@ -205,8 +212,15 @@ const Write = () => {
           </form>
 
           <div>
-            <div dangerouslySetInnerHTML={{ __html: valueQuill.value }} />
+            <p>Este es con dangerouslySetInnerHTML y dompurify</p>
+            <div dangerouslySetInnerHTML={{ __html: htmlSanatized }} />
+
+            <p>Este es con libreria</p>
             <div>
+              {parse(valueQuill.value)}
+            </div>
+            <div>
+              <p>Este es sin ningun parse</p>
               {valueQuill.value}
             </div>
           </div>

@@ -12,6 +12,8 @@
   "dependencies": {
     "@nextui-org/react": "^2.3.0",
     "bootstrap-icons": "^1.11.3",
+    "dompurify": "^3.1.4",
+    "html-react-parser": "^5.1.10",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "quill-image-resize-module-react": "^3.0.0",

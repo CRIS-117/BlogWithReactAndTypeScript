@@ -110,3 +110,20 @@
   src: local('Kanit-ThinItalic'),
     url('../public/fonts/Kanit-ThinItalic.ttf') format('truetype');
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #bdbdbd;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9ec919;
+  border: 1px solid #9ec919;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bde338;
+}
